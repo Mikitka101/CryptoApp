@@ -34,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
 }
 
@@ -48,6 +51,8 @@ dependencies {
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     ksp(libs.androidx.lifecycle.compiler)
     implementation(libs.androidx.lifecycle.reactivestreams)
     implementation(libs.material)

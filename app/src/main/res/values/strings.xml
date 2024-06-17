@@ -3,4 +3,12 @@
     <string name="coin_logo">Coin logo</string>
     <string name="last_update_template">Last update: %s</string>
     <string name="symbols_template">%s / %s</string>
+
+    <string name="slash">" / "</string>
+    <string name="min_price_label">Today\'s MINIMUM:</string>
+    <string name="price_label">Price:</string>
+    <string name="max_price_label">Today\'s MAXIMUM:</string>
+    <string name="last_market_label">Last market:</string>
+    <string name="last_updated_label">Update:</string>
+    <string name="back_to_list">Back to list</string>
 </resources>
