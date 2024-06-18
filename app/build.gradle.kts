@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.core.splashscreen)
     ksp(libs.androidx.lifecycle.compiler)
     implementation(libs.androidx.lifecycle.reactivestreams)
     implementation(libs.material)
