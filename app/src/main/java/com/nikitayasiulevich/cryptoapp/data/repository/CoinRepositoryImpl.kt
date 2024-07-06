@@ -3,20 +3,19 @@ package com.nikitayasiulevich.cryptoapp.data.repository
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import androidx.work.ExistingWorkPolicy
+import androidx.work.WorkManager
 import com.nikitayasiulevich.cryptoapp.data.database.AppDatabase
 import com.nikitayasiulevich.cryptoapp.data.mapper.CoinMapper
-import com.nikitayasiulevich.cryptoapp.data.network.ApiFactory
 import com.nikitayasiulevich.cryptoapp.domain.CoinInfo
 import com.nikitayasiulevich.cryptoapp.domain.repository.CoinRepository
-import kotlinx.coroutines.delay
+import com.nikitayasiulevich.cryptoapp.workers.RefreshDataWorker
 
 class CoinRepositoryImpl(
-    application: Application
+    private val application: Application
 ) : CoinRepository {
 
     private val coinInfoDao = AppDatabase.getInstance(application).coinPriceInfoDao()
-
-    private val apiService = ApiFactory.apiService
 
     private val mapper = CoinMapper()
 
@@ -34,19 +33,12 @@ class CoinRepositoryImpl(
         }
     }
 
-    override suspend fun loadData() {
-        while (true) {
-            try {
-                val topCoins = apiService.getTopCoinsInfo(limit = 50)
-                val fSyms = mapper.mapNamesListToString(topCoins)
-                val jsonContainer = apiService.getFullPriceList(fSyms = fSyms)
-                val coinInfoDtoList = mapper.mapJsonContainerToListCoinInfo(jsonContainer)
-                val dbModelList = coinInfoDtoList.map {
-                    mapper.mapDtoToDbModel(it)
-                }
-                coinInfoDao.insertPriceList(dbModelList)
-            } catch (_: Exception) {}
-            delay(10_000)
-        }
+    override fun loadData() {
+        val workManager = WorkManager.getInstance(application)
+        workManager.enqueueUniqueWork(
+            RefreshDataWorker.NAME,
+            ExistingWorkPolicy.REPLACE,
+            RefreshDataWorker.makeRequest()
+        )
     }
 }
