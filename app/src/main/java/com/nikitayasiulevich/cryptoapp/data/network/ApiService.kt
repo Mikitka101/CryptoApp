@@ -1,27 +1,26 @@
-package com.nikitayasiulevich.cryptoapp.api
+package com.nikitayasiulevich.cryptoapp.data.network
 
-import com.nikitayasiulevich.cryptoapp.pojo.CoinInfoListOfData
-import com.nikitayasiulevich.cryptoapp.pojo.CoinPriceInfoRawData
-import io.reactivex.rxjava3.core.Single
+import com.nikitayasiulevich.cryptoapp.data.network.model.CoinInfoJsonContainerDto
+import com.nikitayasiulevich.cryptoapp.data.network.model.CoinNamesListDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiService {
 
     @GET("top/totalvolfull")
-    fun getTopCoinsInfo(
+    suspend fun getTopCoinsInfo(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_LIMIT) limit: Int = 25,
         @Query(QUERY_PARAM_TO_SYMBOL) tSym: String = CURRENCY,
 
-        ): Single<CoinInfoListOfData>
+        ): CoinNamesListDto
 
     @GET("pricemultifull")
-    fun getFullPriceList(
+    suspend fun getFullPriceList(
         @Query(QUERY_PARAM_API_KEY) apiKey: String = "",
         @Query(QUERY_PARAM_TO_SYMBOLS) tSyms: String = CURRENCY,
         @Query(QUERY_PARAM_FROM_SYMBOLS) fSyms: String
-    ): Single<CoinPriceInfoRawData>
+    ): CoinInfoJsonContainerDto
 
     companion object {
         private const val QUERY_PARAM_LIMIT = "limit"

@@ -42,12 +42,12 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.squareup.picasso)
-    implementation(libs.rxandroid)
-    implementation(libs.rxjava)
-    implementation(libs.adapter.rxjava3)
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)

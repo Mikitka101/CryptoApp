@@ -1,14 +1,12 @@
-package com.nikitayasiulevich.cryptoapp.pojo
+package com.nikitayasiulevich.cryptoapp.data.network.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import com.nikitayasiulevich.cryptoapp.api.ApiFactory.BASE_IMAGE_URL
-import com.nikitayasiulevich.cryptoapp.utils.convertTimestampToTime
 
 @Entity(tableName = "full_price_list")
-data class CoinPriceInfo(
+data class CoinInfoDto(
     @PrimaryKey
     @SerializedName("FROMSYMBOL")
     @Expose
@@ -77,12 +75,4 @@ data class CoinPriceInfo(
     @SerializedName("IMAGEURL")
     @Expose
     val imageUrl: String? = null,
-) {
-    fun getFormattedTime(): String {
-        return convertTimestampToTime(lastUpdate)
-    }
-
-    fun getFullImageUrl(): String {
-        return BASE_IMAGE_URL + imageUrl
-    }
-}
+)
