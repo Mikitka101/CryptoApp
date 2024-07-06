@@ -32,7 +32,7 @@
         android:id="@+id/tvSlash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:padding="8dp"
         android:text="@string/slash"
         android:textSize="24sp"
@@ -88,7 +88,6 @@
                 tools:text="7352.5" />
 
             <View
-                android:id="@+id/view"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="8dp"
@@ -120,30 +119,36 @@
                 app:layout_constraintTop_toBottomOf="@id/tvPriceLabel"
                 tools:text="7110.0" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="#63000000"
+                app:layout_constraintTop_toBottomOf="@id/tvMinPriceLabel" />
+
             <TextView
                 android:id="@+id/tvMaxPriceLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:text="@string/max_price_label"
                 android:textColor="#000"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toStartOf="@id/tvMaxPrice"
-                app:layout_constraintTop_toBottomOf="@id/view" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvMinPriceLabel" />
 
             <TextView
                 android:id="@+id/tvMaxPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:textColor="@android:color/holo_green_dark"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view"
+                app:layout_constraintStart_toEndOf="@id/tvMaxPriceLabel"
+                app:layout_constraintTop_toBottomOf="@id/tvMinPriceLabel"
                 tools:text="7820.1" />
 
             <View
@@ -209,19 +214,6 @@
                 app:layout_constraintStart_toEndOf="@id/tvLastUpdateLabel"
                 app:layout_constraintTop_toBottomOf="@id/tvLastMarket"
                 tools:text="21:05:16" />
-
-            <Button
-                android:id="@+id/buttonBack"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@string/back_to_list"
-                app:cornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvLastUpdateLabel"
-                tools:layout_editor_absoluteY="183dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
